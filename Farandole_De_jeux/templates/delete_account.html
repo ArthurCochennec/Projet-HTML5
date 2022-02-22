@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Account</title>
+    <link href="{{ url_for('static', filename='style_delete_account.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+
+</head>
+<div class="bg">
+<body>
+<div title="delete_account">
+<h id="DeleteAccountTitle">Attention! Il n'y a pas de retour en arrière possible</h>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>{{ form.submit() }}</p>
+
+        <p><a href="{{ url_for('myaccount') }}">Annuler</a></p>
+    </form>
+</div>
+</body>
+</div>
+
+
+</html>

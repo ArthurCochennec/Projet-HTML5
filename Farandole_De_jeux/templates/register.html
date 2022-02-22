@@ -1,0 +1,107 @@
+{% extends "_register.html" %}
+
+{% block content %}
+
+ <form action="" method="post">
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+        {% if category != 'error_date' %}
+        <span title="error">{{ message }}</span><br>
+        {% endif %}
+    {% endfor %}
+
+    <h id="RegisterTitle">S'ENREGISTRER </h>
+
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.first_name.label }} <br>
+
+            {{ form.first_name(size=32) }} <br>
+            {% for error in form.first_name.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+
+        </p>
+         <p>
+            {{ form.last_name.label }}<br>
+
+            {{ form.last_name(size=32) }}<br>
+
+             {% for error in form.last_name.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            &nbsp&nbsp&nbspDate de naissance <br>
+
+            &nbsp{{ form.day_birth.label }} &nbsp&nbsp&nbsp{{ form.month_birth.label }} &nbsp&nbsp{{ form.year_birth.label }}<br>
+            {{ form.day_birth() }}  {{ form.month_birth() }}           {{ form.year_birth() }} <br>
+
+            {% for error in form.day_birth.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+            {% for error in form.month_birth.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+            {% for error in form.year_birth.errors %}
+               <span title="error">{{ error }}</span>
+            {% endfor %}
+
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                {% if category == 'error_date' %}
+                    <span class="{{ category }}">{{ message }}</span><br>
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.sexe.label }}<br>
+            {{ form.sexe() }} <br>
+
+            {% for error in form.sexe.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.email.label }} <br>
+
+           {{ form.email(size=32) }}  <br>
+
+            {% for error in form.email.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+         </p>
+         <p>
+            {{ form.pseudo.label }} <br>
+            {{ form.pseudo(size=32) }} <br>
+             {% for error in form.pseudo.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+
+        </p>
+
+        <p>
+            {{ form.password.label }} <br>
+            {{ form.password() }} <br>
+            {% for error in form.password.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+
+        </p>
+
+        <p>
+            {{ form.confirm.label }} <br>
+
+            {{ form.confirm() }} <br>
+            {% for error in form.confirm.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}<br>
+
+        </p>
+
+        <p>{{ form.submit() }}</p>
+
+     <p><a href="{{ url_for('preface') }}">Annuler</a></p>
+
+    </form>
+
+{% endblock %}

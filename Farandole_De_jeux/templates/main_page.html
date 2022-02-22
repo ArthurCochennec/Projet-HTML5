@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Main Page</title>
+        <link href="{{ url_for('static', filename='style_main_page.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+
+    <div class="bg">
+        <div title="main_page">
+
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <span class="{{ category }}">{{ message }}</span>
+            {% endfor %}
+
+            <br><h id="MainPageTitle">BIENVENUE {{ current_user.first_name }} !!!</h><br><br>
+            <p><a href="{{ url_for('dodge') }}">Jouer au Dodge</a></p>
+            <p><a href="{{ url_for('memory') }}">Jouer au Memory</a></p>
+
+            <p>Records Dodge: </p>
+            <p>Numéro 1 => {{ r1 }}</p>
+            <p>Numéro 2 => {{ r2 }}</p>
+            <p>Numéro 3 => {{ r3 }}</p>
+            <p>Numéro 4 => {{ r4 }}</p>
+            <p>Numéro 5 => {{ r5 }}</p>
+
+            <p><a href="{{ url_for('myaccount') }}">Voir mon profil</a></p>
+            <p><a href="{{ url_for('logout') }}">Se déconnecter</a></p>
+            <p><a href="{{ url_for('chat') }}">Chat</a></p>
+
+        </div>
+    </div>
+</html>

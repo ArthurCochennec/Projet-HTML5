@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MyAccount</title>
+        <link href="{{ url_for('static', filename='style_myaccount.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+
+    </head>
+
+    <div class="bg">
+        <div title="myaccount">
+
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <span class="{{ category }}">{{ message }}</span>
+            {% endfor %}
+
+            <br><h id="MyAccountTitle">Informations</h><br><br>
+            <p>Prénom: {{ Prénom }}</p>
+            <p>Nom: {{ Nom }}</p>
+            <p>Date de naissance: {{ Date_de_naissance }}</p>
+            <p>Sexe: {{ Sexe }}</p>
+            <p>Email: {{ Email }}</p>
+            <p>Pseudo: {{ Pseudo }}</p>
+            <p>Record: {{ Record }}</p>
+
+            <br><p><a href="{{ url_for('modify_informations') }}">Modifier mes informations</a></p>
+            <p><a href="{{ url_for('modify_password') }}">Modifier mon mot de passe</a></p>
+            <p><a href="{{ url_for('main_page') }}">Retour au menu</a></p>
+            <p><a href="{{ url_for('logout') }}">Se déconnecter</a></p>
+            <p><a href="{{ url_for('delete_account') }}">Supprimer son compte</a></p>
+        </div>
+    </div>
+</html>

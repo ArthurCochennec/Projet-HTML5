@@ -1,0 +1,77 @@
+body {
+  background: #DCDCDC;
+}
+* {
+  font-family: "Bowlby One SC", cursive;
+  color: #000000;
+}
+
+button {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+}
+
+.user {
+  font-family: "Bowlby One SC", cursive;
+  font-size: 3rem;
+  color: #caa8f5;
+  text-align: center;
+}
+
+.positioned {
+  position: absolute;
+  top: 700px;
+  right: 600px;
+  left: 50px;
+}
+
+ul.main {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  right: 100px;
+  bottom: 100px;
+  left: 20px;
+}
+
+a {
+  position: absolute;
+  top: 0px;
+  cursor:pointer;
+}
+
+
+img {
+ height: 50px;
+ width: 50px;
+}
+
+.pseudo {
+  font-family: "Bowlby One SC", cursive;
+  font-size: 1.2rem;
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.other {
+  font-family: "Bowlby One SC", cursive;
+  font-size: 1.2rem;
+  color: hsl(30, 100%, 50%);
+  font-weight: bold;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+
+#canvas {
+  background: #230c33;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #9984d4;
+}

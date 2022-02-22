@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Modify Informations</title>
+        <link href="{{ url_for('static', filename='style_modify_informations.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+
+    <div class="bg">
+        <div title="modify_informations">
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+
+                <h id="ModifyInformationsTitle">Modifier les informations </h><br>
+                <h>(laissez vide pour ne rien changer)</h><br><br>
+
+                <p>
+                    Prénom actuel: {{ Prénom }}
+                </p>
+
+                <p>
+                   {{ form.first_name.label }} {{ form.first_name(size=32) }}<br>
+
+                    {% for error in form.first_name.errors %}
+                        <span title="error">{{ error }}</span>
+                    {% endfor %}
+                </p><br>
+                <p>
+                   Nom actuel: {{ Nom }}
+                </p>
+
+                <p>
+                  {{ form.last_name.label }} {{ form.last_name(size=32) }}<br>
+
+                    {% for error in form.last_name.errors %}
+                        <span title="error">{{ error }}</span>
+                    {% endfor %}
+                </p><br>
+
+                <p>
+                    Sexe actuel: {{ Sexe }}
+                </p>
+
+                <p>
+                   {{ form.sexe.label }} {{ form.sexe() }}
+
+                    {% for error in form.sexe.errors %}
+                        <span title="error">{{ error }}</span>
+                    {% endfor %}
+                </p>
+
+                <p>{{ form.submit() }}</p>
+            </form>
+
+            <p><a href="{{ url_for('myaccount') }}">Annuler</a></p>
+
+        </div>
+    </div>
+</html>

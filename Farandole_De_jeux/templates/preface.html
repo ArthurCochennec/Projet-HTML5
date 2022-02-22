@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Preface</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="{{ url_for('static', filename='style_preface.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+
+    <div class="bg">
+        <form method="GET" action="/preface">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <span class="{{ category }}"><p1>{{ message }}</p1></span>
+            {% endfor %}
+
+            <div class="morph grayscale colonne" title="image">
+                <div>
+                    <a href="{{ url_for('login') }}"><img title="connexion" src="static/Pictures/connexion.png"/></a>
+                </div>
+
+                <div>
+                    <a href="{{ url_for('register') }}"><img title="enregistrer" src="static/Pictures/enregistrer.png"/></a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</html>

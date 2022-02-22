@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Chat Room</title>
+        <link href="{{ url_for('static', filename='style_chat.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        var bot = false;
+        var diff = 0
+
+        $(document).ready(function() {
+        document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+        diff = document.getElementById('messages').scrollHeight - document.getElementById('messages').scrollTop;
+
+            var socket = io.connect('http://127.0.0.1:5000');
+
+            socket.on('message', function(msg) {
+
+                if (document.getElementById('messages').scrollTop >= document.getElementById('messages').scrollHeight - diff - 20)
+                {
+                    bot = true;
+                }
+                else
+                {
+                    bot = false;
+                }
+
+
+                if('{{ pseudo }}' == msg[0])
+                {
+                    $("#messages").append('<p><span class="other">'+msg[0]+'</span><span class="body_message">'+msg[1]+'</span><br></p>');
+                }
+                else
+                {
+                    $("#messages").append('<p><span class="pseudo">'+msg[0]+'</span><span class="body_message">'+msg[1]+'</span><br></p>');
+                }
+
+
+                 if(bot)
+                {
+                    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+                }
+
+
+            });
+
+            $('#sendbutton').on('click', function() {
+                socket.send($('#myMessage').val());
+                $('#myMessage').val('');
+            });
+
+        });
+
+        </script>
+        <p class="user">Utilisateur: {{ pseudo[:-1] }}</p>
+    <div class="scrollable">
+        <ul class="main" id="messages">
+            {% for msg in messages %}
+                {% if pseudo == msg[0] %}
+                    <p><span class="other">{{ msg[0] }}</span><span class="body_message">{{ msg[1] }}</span><br></p>
+                {% else %}
+                    <p><span class="pseudo">{{ msg[0] }}</span><span class="body_message">{{ msg[1] }}</span><br></p>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+        <p><input class="positioned" type="text" id="myMessage"></p>
+        <button id="sendbutton">Send</button>
+        <p><a href="{{ url_for('main_page') }}"><img src="static/Pictures/retour.jpg"></a></p>
+
+    <script>
+var input = document.getElementById("myMessage");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("sendbutton").click();
+  }
+});
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "_login.html" %}
+
+{% block content %}
+    <h id="LoginTitle" >SE CONNECTER</h>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+         <p>
+            {{ form.pseudo.label }}<br>
+            {{ form.pseudo(size=32) }}<br>
+            {% for error in form.pseudo.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password() }}<br>
+            {% for error in form.password.errors %}
+                <span title="error">{{ error }}</span>
+            {% endfor %}
+
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                {% if category == 'wrong_password' %}
+                    <span title="error"> {{ message }}</span><br>
+                {% endif %}
+            {% endfor %}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+
+        <p><a href="{{ url_for('preface') }}">Annuler</a></p>
+
+{% endblock %}
